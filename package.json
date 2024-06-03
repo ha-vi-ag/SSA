@@ -1,0 +1,22 @@
+{
+  "name": "semantic-grader",
+  "version": "1.0.0",
+  "description": "compares two text data and generates similarity score",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon index.js"
+  },
+  "author": "Harshit Anuj Aman Nimish",
+  "license": "ISC",
+  "dependencies": {
+    "bard-ai": "^2.0.3",
+    "bard-api-node": "^2.1.0",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "nodemon": "^3.1.0",
+    "openai": "^4.28.0"
+  }
+}
