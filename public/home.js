@@ -30,13 +30,13 @@ function createAnwerTag(details, quesNo) {
   div.appendChild(label1);
   div.appendChild(input);
 
-  const input1 = document.createElement("textarea");
+  const input1 = document.createElement("input");
   input1.setAttribute("readOnly", "readOnly");
   input1.setAttribute("class", "form-control");
   input1.value = details.score;
 
   const label2 = document.createElement("label");
-  label2.innerText = "Explanation: ";
+  label2.innerText = "Score: ";
   div.appendChild(label2);
   div.appendChild(input1);
   
@@ -69,7 +69,7 @@ form.addEventListener("submit", function (event) {
     .then((response) => response.json())
     .then((response) => {
       form.innerHTML = "";
-      document.getElementById("heading").innerText = "Analysis Result";
+      document.getElementById("heading").innerText = "Score Card";
       return response.result.forEach((detail, index) => {
         const div = createAnwerTag(detail, index + 1);
         form.appendChild(div);

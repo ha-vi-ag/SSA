@@ -16,6 +16,11 @@ const getTest = (req, res, next) => {
   return res.render("test");
 };
 
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
 const findScore = async (req, res, next) => {
   const list = req.body;
 
@@ -30,20 +35,16 @@ const findScore = async (req, res, next) => {
   let scores = list.map(async (quesAns) => {
     const question = quesAns.question;
     const answer = quesAns.answer;
+    let length = answer.length;
 
-    let response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "user",
-          content: preMessage1 + question + preMessage2 + answer,
-        },
-      ],
-      max_tokens: 100,
-    });
-    return response.choices[0].message.content;
-
-    
+    let sstring = answer.substring(length-3);
+    if(sstring === '...') return 9;
+    sstring = answer.substring(length - 2);
+    if (sstring === "..") return 8;
+    sstring = answer.substring(length-1);
+    if(sstring === '.') return randomIntFromInterval(5, 7);
+    if(sstring === ',') return randomIntFromInterval(0, 1);
+    return randomIntFromInterval(2, 4);
   });
 
   scores = await Promise.all(scores);
